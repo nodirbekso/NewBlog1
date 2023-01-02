@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} Бош сахифа {% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<!--{{ user.username}} <a href="{% url 'logout' %}">Чикиш</a>-->
+{{ user.first_name}} {{ user.last_name}} <a href="{% url 'logout' %}">Чикиш</a>-->
+
+
+
+{% else %}
+<a href="{% url 'login' %}">Кириш</a> | <a href="{% url 'signup' %}">Руйхатдан утиш</a>
+{% endif %}
+{% endblock content %}

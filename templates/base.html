@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %}Nodiraka Blog {% endblock title %} </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-warning  navbar-expand-lg-right ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">NodirStrap </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        {{user.first_name}} {{user.last_name}}
+                    </a>
+                    <ul class="dropdown-menu ">
+<!--                        <li><a class="dropdown-item" href="#">Янги Пост</a></li>-->
+                        <li><a class="dropdown-item" href="{% url 'password_change' %}">Парольни узгартириш</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Чикиш</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% else %}
+            <form class="form-inline ms-auto">
+<!--            <ul class="navbar-nav ms-auto">-->
+<!--                <li class="nav-item">-->
+                    <a class="btn btn-outline-light" href="{% url 'login' %}">Кириш</a>
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+                    <a class="btn btn-primary ml-2" href="{% url 'signup' %}">Регистрация</a>
+<!--                </li>-->
+<!--            </ul>-->
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<main>
+    {% block content %}
+    {% endblock content %}
+</main>
+
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
